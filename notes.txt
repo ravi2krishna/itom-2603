@@ -1,0 +1,115 @@
+Class - 1
+-----------
+
+    -> Service Now is not just one Application, it's a platform
+    which hosts multiple Applications 
+
+        -> ITSM (Incidents, Problems, Change Requests etc)
+
+        -> HRSD (Employee Center, Employee Life Cycle etc)
+
+        -> ITOM (Service Discovery, Service Mapping, Event Management)
+
+    
+    -> ITOM 
+
+        -> IT Operations Management is suite of applications within service now 
+        this applications helps organizations discover, map, monitor and manage 
+        their companies IT Infrastructure and IT Services.
+
+    -> IT Infrastructure 
+
+        -> Foundation Layer (Hardware + Software) On Which Everything Runs 
+
+            -> Servers 
+
+                -> Physical Servers (On-Premise Datacenters)
+
+                -> Virtual Machines (Virtualization Platforms VMWare, Hyper-V etc)
+
+                -> Cloud Servers (AWS, Azure, Google Cloud etc)
+
+            -> Networking 
+
+                -> Routers 
+
+                -> Switches 
+
+                -> Firewalls 
+
+                -> Load Balancers 
+
+                -> etc 
+
+            -> Software 
+
+                -> Operating System 
+
+                -> Database Software 
+
+                -> Web Server Software 
+
+                -> etc 
+
+
+    -> IT Services 
+
+        -> What Businesses Actually Use and Deliver Services To Customers 
+
+            -> Banking Services 
+
+            -> Ecommerce Services 
+
+            -> LMS Services 
+
+            -> etc 
+
+    -> NOTE: To Power IT Services, We Need IT Infrastructure
+
+    -> Banking Service Like HDFC 
+
+        -> https://www.hdfc.bank.in/
+
+            -> Credit Card 
+
+                -> Mobile Number, Card Name, Validity, PIN (Data)
+
+                    -> Data is inside Database 
+
+                        -> Database is inside Server 
+
+                            -> Server is inside Datacenters (Cloud/On-Premise)
+
+
+
+    -> ITOM bridges the gap between IT Infrastructure and Business Services 
+    by providing Visibility, Automation and Control over entire IT environment.    
+
+        -> NOTE: https://www.pan.utiitsl.com (No Issues)
+
+        -> NOTE: https://www.pan.utiitsl.com/panonline_ipg/forms/csfPan.html/csfPreForm 
+            
+            -> Issue 502 Error - What is causing this ? discover, map, monitor
+
+    
+    -> Who Should Learn ITOM ?? 
+
+        -> IT Operations Teams 
+
+        -> Service Now ITOM is best suited for professionals involved in 
+        IT Infrastructure, Cloud Operations, Monitoring, Automation etc 
+
+    
+    -> ITOM Career Path 
+
+        -> Help Desk Engineer 
+                |
+        -> System Administrator 
+                |
+        -> Cloud Engineer / DevOps Engineer
+                |
+        -> Service Now ITOM Specialist 
+            
+
+
+    
