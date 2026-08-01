@@ -112,4 +112,75 @@ Class - 1
             
 
 
+Class - 2
+-----------
+
+    -> Main Concepts Of ITOM 
+
+        -> Discovery (Horizontal Discovery)
+
+        -> Service Mapping 
+
+    -> NOTE: https://www.servicenow.com/docs/r/it-operations-management/discovery/r-discovery.html
+
     
+    -> NOTE: MID Server Agent Setup -> Begin Discovery -> Do Service Mapping(Business) 
+
+    
+    -> Network Protocols 
+
+        -> Network protocols are a "set of rules" and formats 
+        that govern how devices exchange data across a network.
+
+        -> To exchange data we have Type Of Protocols & Ports 
+
+            -> HTTP / HTTPS (HyperText Transfer Protocol) 
+            Transmitting Web Data Over Internet.
+            HTTP / HTTPS Ports 80 / 443 
+
+            -> SSH Protocol (Secure Shell) is used to 
+            communicate with Linux / Unix Servers. 
+            We Use SSH Keys(Pair) i.e Public Key & Private Key. 
+            SSH Port is 22
+
+            -> SNMP Protocol(Simple Network Management Protocol)
+            Used for Monitoring Network Connected Devices 
+            (Routers, Switches, Firewalls etc).
+            SNMP Port is 161/162 
+
+    
+    
+    -> Key Modules / Components Of ITOM 
+
+
+        -> CMDB - Configuration Management Database 
+
+            -> The Backbone Of ITOM.
+            All Discoverd Assets and their Relationships 
+            are configured here as Configuration Items (CI's)
+
+        -> Configuration Items (CI's)
+
+            -> Any Asset that needs to be Managed i.e 
+            Server, Application, Network Device etc 
+
+        -> Discovery 
+
+            -> The Process Of Automatically Identifying and Populating 
+            CI's into CMDB. We Use MID Server for Discovery Process. 
+
+        -> Service Mapping 
+
+            -> Creates a Map, Linking Business Services With 
+            all Infrastructure Components.    
+
+        -> Event Management 
+
+            -> Collects Alerts From External Monitoring Tools
+            (Nagios, Prometheus, Zabbix etc) and correlates 
+            them into actionable Alerts.  
+
+
+
+
+             
