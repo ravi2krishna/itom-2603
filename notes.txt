@@ -181,6 +181,95 @@ Class - 2
             them into actionable Alerts.  
 
 
+Class - 3
+-----------
+
+    -> CMDB - Configuration Management Database 
+
+        -> Configuration Management Database(CMDB) is a centralized location that 
+        functions as a data warehouse, organizing information about your IT environment.
+        CMDB Clarifies the Relationships between hardware, software and network Components. 
+
+        -> CMDB is the backbone of ServiceNow ITOM.    
+
+        -> CMDB is the Master inventory of ServiceNow.
+
+        -> Every Server, Every Application, Every Database, Every Business Service
+        you own live as a record in CMDB.
+
+    
+    -> Use Case For Understanding CMDB
+
+        -> Existing System
+
+            -> Imagine we have a library with 1000's of Books 
+
+            -> But we don't have Catalog System (randomly kept)
+
+                -> I need this specific book (look for each book till you find)
+
+        
+        -> New System
+
+            -> Upgraded library with Complete Catalog 
+
+                -> Search By Title (Server)
+
+                -> Search By Author (Application)
+
+                -> Search By Topic (Hardware)
+
+            -> I need this specific book (Author - Ravi)    
+
+            -> NOTE: For your IT the New Upgraded library is like Having CMDB 
 
 
-             
+    -> CMDB Info From ServiceNow PDI 
+
+        -> Computer - *BUD-IBM 
+
+            -> Open in CMDB Workspace -> Open Map 
+
+                -> https://dev407423.service-now.com/now/cmdb/record/cmdb_ci_computer/53fdbc8437201000deeabfc8bcbe5d10
+
+
+        -> Application - Web Server - apache linux den 200 
+
+            -> Open in CMDB Workspace -> Open Map 
+
+                -> https://dev407423.service-now.com/now/cmdb/record/cmdb_ci_web_server/5f8af237c0a8010e01a932999468b83a
+
+
+
+    
+    -> Configuration Items (CI's)
+
+        -> Configuration Items (CI's) are like atoms of CMDB 
+
+        -> A Configuration Items (CI) in servicenow is a digital record within 
+        CMDB representing any manageable IT Component. 
+
+        -> CI's Track Infrastructure Details (Manufacturer, Location, Serial Numbers) 
+        to support ITIL Process.
+
+        -> Any Configuration Item has three things 
+
+            -> Class (What Type Of Asset is it)
+
+            -> Attributes (Properties Of Assets)
+
+            -> Relationships (Connection With Other Assets)
+
+                -> Application - Web Server - apache linux den 200 
+
+                    -> Open in CMDB Workspace -> Open Map 
+
+
+    -> Without CMDB 
+
+        -> https://www.lansweeper.com/wp-content/uploads/2019/06/All-servers-by-type.png
+
+    
+    -> With CMDB (CI's)
+
+        -> https://servicenowguru.com/wp-content/uploads/2024/05/bsmMap.jpg
