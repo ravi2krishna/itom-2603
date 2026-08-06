@@ -273,3 +273,28 @@ Class - 3
     -> With CMDB (CI's)
 
         -> https://servicenowguru.com/wp-content/uploads/2024/05/bsmMap.jpg
+
+
+
+Class - 4
+-----------
+
+    -> Relationships 
+
+        -> A Relationship in ServiceNow is a Connection between 
+        Multiple Configuration Items (CI's) which defines 
+
+            -> How CI's Interact with each other 
+
+            -> How CI's Depend On each other
+
+                -> Runs On 
+
+                -> Used By 
+
+                -> Depends On 
+
+                -> etc 
+
+            -> NOTE: The Relationships are Automatically Discoverd using "Discovery Process"
+            
