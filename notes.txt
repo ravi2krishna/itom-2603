@@ -298,3 +298,108 @@ Class - 4
 
             -> NOTE: The Relationships are Automatically Discoverd using "Discovery Process"
             
+
+Class - 5
+-----------
+
+    -> NOTE: From our previous LAB where we created Manually, 
+    Server CI and Application CI, Updated Attributes & 
+    Established Relationships. 
+
+    -> Say we have 100's of servers and applications, then doing all the above
+    activities manually takes a lot of time and efforts, thats where we need 
+    "Discovery"
+
+    -> NOTE: Understanding Whole ITOM Easily 
+
+        -> CMDB (Think Of it as City Map)
+
+        -> CI's (Buildings Within City - Address, Color etc)
+
+        -> Relationships (Roads Connecting Buildings)
+
+        -> Discovery (Keeps Map Updated)
+
+        -> Event Management (Monitors - Building on fire, sends an SOS to fire department)
+
+        -> Service Mapping (Draws routes between districts (services))
+
+
+    -> Discovery
+
+        -> Discovery in ServiceNow is an Automated Process, that continuously 
+        scans and Identifies all the Components within IT Infrastructure and 
+        there by writing into CMDB.
+
+        -> https://www.servicenow.com/docs/r/it-operations-management/discovery/r-discovery.html 
+
+    
+    -> How Discovery Works / Discovery Architecture 
+
+        -> Schedule & Trigger 
+
+            -> You Define an IP Range 
+
+                -> 10.0.0.0/16 -> Range is 10.0.0.0 - 10.0.255.254
+
+                -> 10.0.10.0/24 -> Range is 10.0.10.0 - 10.0.10.254
+            
+            -> Update Schedule 
+
+                -> Default is 24 Hours 
+
+                -> You can run on-demand, whenever you need 
+
+        
+        -> Scanning 
+
+            -> MID Server Probes Network Using Different Protocols 
+            to get devices(CI's) information, 
+
+                -> WMI - windows machines  
+                -> SSH - Linux Systems
+                -> SNMP - Network Devices 
+
+        
+        -> Classification & Identification 
+
+            -> Probes Will Collect information(Attributes) like 
+            Hardware, Softwares, Applications etc 
+
+            -> Sensors Will Classify Device Types (CI Classes)
+
+                -> Probes + Sensors = CI Class & Attributes 
+        
+
+        -> Populate CMDB 
+
+            -> CI's are Created in CMDB and Mapped Accordingly. 
+
+
+        -> NOTE: We have Server PROD-DB-01 (Discoverd)
+
+            -> CPU / RAM -> 4 cpu Intel / 16 GB RAM 
+
+            -> Hostname - PROD-DB-01
+
+            -> DNS - db.prod.com 
+
+            -> OS Info - Ubuntu 24.04 LTS 
+
+            -> Running - PostgresSQL, SSH 
+
+            -> Connects To - Web App, HR System 
+
+    
+    -> NOTE: Discovery == Zero Manual Data Entry For Infrastructure (CI's)
+
+        -> No Spread Sheets 
+
+        -> No Stale Data 
+
+        -> CMDB Stays Updated (Schedules)
+
+        -> Every Scan that happens, updates what was changed 
+
+
+
