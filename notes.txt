@@ -471,3 +471,58 @@ Class - 6
 
         -> NOTE: Mid Server Appears as a record in "ecc_agent" table showing status 
         as UP/DOWN and Validation State 
+
+
+Class - 7
+-----------
+
+    -> Credentials 
+
+        -> Once Mid Server Reaches The Devices On Network, it needs to login into 
+        System and pull the information from it. 
+
+        -> To Pull the information we need Credentials i.e Authentication Secrets 
+
+        -> Credentials Live in discovery_credentials Table 
+        
+        -> NOTE: All the Credentials we use are encrypted 
+
+        -> We Have Different Types Of Credentials 
+
+            -> Windows Uses Username & Password, pass Credentials as username & password 
+
+            -> Unix Like Systems i.e Linux Machines, they typically use 
+            Password less Authentication i.e SSH Key Pairs 
+
+                -> Public Key & Private Key  
+
+            -> If You have VMWare Environment, use VMware Credentials
+
+            -> API Keys which are typically used for Cloud Environments 
+
+
+    
+    -> Probes & Sensors
+
+        -> Probes & Sensors are two halves of same job. 
+
+    -> Probes 
+
+        -> A Probe is like a Question 
+
+            -> It can be a command or it can be a script that MID Server executes 
+            against your target device(Windows Machine, Linux Server, NIC, Disk etc) 
+
+            -> Probes runs on MID Server Side, Reaches target device and brings back all 
+            the raw output like Commands, JSON, WMI Queries etc 
+
+            -> The RAW output will be stored at ServiceNow using ECC Queue 
+
+
+    -> Sensors 
+
+        -> A Sensor is like a Answer  
+
+        -> It's a Script That Takes Raw output and starts parsing it and extracts 
+        fields like OS, IP, Processes, Ports etc and maps them to CI Attributes, 
+        which inturn gets Updated as a record in CMDB 
