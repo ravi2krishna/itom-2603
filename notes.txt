@@ -526,3 +526,60 @@ Class - 7
         -> It's a Script That Takes Raw output and starts parsing it and extracts 
         fields like OS, IP, Processes, Ports etc and maps them to CI Attributes, 
         which inturn gets Updated as a record in CMDB 
+
+
+Class - 8
+-----------
+
+    -> Connecting Probes, Sensors & ECC Queues 
+
+        -> Detective Stroy 
+
+            -> Detective Assistant / Probe 
+
+                -> Goes to Crime Scene, takes photos, collects fingerprints etc 
+                i.e collection of all raw evidences 
+
+                -> ITOM: Probes Collect Data 
+
+            -> Bag Of Evidences / ECC Queue 
+
+                -> Bag Of Evidence contains lot of unprocessed raw evidence items 
+
+                -> ITOM: Raw Data about Servers, Storage etc is in ECC Queue 
+
+            -> Detective / Sensor 
+
+                -> Detective sits at desk, opens bag of evidence, examines 
+                each item and extracts meaning of those items and writes final report 
+
+                -> ITOM: Extracts attributes from ECC Queue and gives meaningful fields for CI's 
+
+
+    -> Patterns 
+
+        -> Patterns are ServiceNow's Modern Replacement for Probes approach 
+        for Application and Software Discovery. 
+
+        -> Probes are Still Heavily used for Infrastructure (Hardware/CPU/RAM/NW)
+
+        -> NOTE: Patterns are preferred method for discovering Applications & Services 
+
+        -> A Pattern is a declarative definition unlike imperative definition of probes, 
+        used to discover specific type of softwares and services, it defines 
+        what to look for, which pattern to run and what files to read and how to 
+        map the results to CI Attributes. 
+
+        -> Patterns are available in Visual Designer(Pattern Designer), rather than
+        working with javascript. 
+
+        -> Patter has Identification Section, which defines how to process 
+        applications or services. 
+
+        
+
+
+
+
+
+
