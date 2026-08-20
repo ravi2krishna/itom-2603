@@ -577,6 +577,119 @@ Class - 8
         applications or services. 
 
         
+Class - 9
+-----------
+
+    -> Discovery Schedule
+
+        -> A Discovery Schedule is the Configuration Record that defines a discovery run.
+        It Answers 
+            -> what should be scanned 
+            -> When Should it run 
+            -> Which Mid Server To Use 
+
+        -> Key Field On Discovery Schedule Includes IP Ranges (ex 10.0.0.0/24) or 
+        Individual IP Address i.e 10.0.0.10/32 
+
+        -> Schedule can be On demand(your choice) or daily / weekly / monthly etc 
+
+        -> Select Mid Server To Use 
+
+        -> NOTE: When Schedule Fires, it creates Discovery Status (DS001090) 
+
+            -> Each Status Contains Discovery Logs (Debugging Tool)
+
+                -> Contains Every Step like which IP was tried, which probe was executed, 
+                which sensor was executed, which pattern was executed, which CI created etc 
+
+
+    -> CI Classification
+
+        -> CI Classification is the Final Step
+
+        -> Classifier Engine / Decision Engine Determines What CI Class To Create and 
+        Whether To Create a new CI or Update an Existing CI 
+
+        -> When a Sensor Finishes Parsing Data from a device, it hands set of raw attributes 
+        to CI Classifier Engine, the Classifier's job is look at the attributes and answer
+        two questions 
+
+            -> What Type Of CI is it ?? 
+
+            -> Does It Already Exist in CMDB ?? 
+
+        -> NOTE: CI Classifier Engine == Identification Rules 
+
+        -> NOTE: When discovery finishes Scanning a device, IRE Looks through this list to find 
+        the matching rules for data it collected. 
+
+            -> https://dev407423.service-now.com/cmdb_identifier_list.do (link)
+
+
+    -> IRE (Identification & Reconciliation Engine)
+
+        -> IRE is the underlying servicenow Engine that uses identifier rules(link)
+
+        -> Each CI Class has a defined set of identifier fields which makes CI's Unique 
+
+        -> Criterion Attributes are like Unique fingerprints Of CI 
+
+        -> For Example, Web Server Like Apache has combination of 
+        System class + version + config file might be the identifier 
+
+        -> NOTE: If IRE finds a match, it updates Existing CI, this is called Reconciliation.
+        Whereas if no match was found, it creates a new CI. 
+
+    
+    -> Simple Analogy 
+
+        -> Taking Hospital Analogy 
+
+            -> Patient Walks In (Discovery Finds a Device)
+
+                -> Receptionist asks: Have You Been Here Before ?? 
+
+                    -> Yes: Pulls Existing File, Updates New Info (Reconciliation) 
+
+                    -> No: Creates New Patient File (Create New CI)
+
+
+        -> ITOM Perspective 
+
+            -> Question 1 : What are you ?? 
+
+                -> Linux Server ? / Widows ? / Application ? 
+
+            -> Question 2 : Have i seen you before ?
+                (Does this CI Already Exist in CMDB)
+
+                -> Yes: Update Existing CI 
+
+                -> No: Create New CI 
+
+    
+    -> Connecting From Discovery 
+
+        -> Discovery finds device 
+
+        -> Pattens / Sensor / Probes Collects Attributes 
+
+        -> IRE Receives Attributes
+
+            -> What Type is this CI ?? <----- CI Classification 
+
+            -> Does this CI Already Exist ? <------ Identification 
+
+                    Yes                 No 
+                Update CI            Create CI 
+                (Reconciliation)     (New Record)
+
+            
+
+
+
+
+
 
 
 
