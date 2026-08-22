@@ -685,6 +685,65 @@ Class - 9
                 (Reconciliation)     (New Record)
 
             
+Class - 10
+-----------
+
+    -> Lab Simulation With IRE Simulation Engine 
+
+    
+    -> Master Lab Setup 
+
+        -> Cloud Account (Setup AWS / Azure Free Account)
+
+        -> Create Machine To Install MID Server 
+
+            -> CPU - 2 CPU's 
+            
+            -> RAM - 8 GB 
+
+            -> HDD - 100 GB 
+
+            
+
+        -> Softwares Required 
+
+            -> System Software (OS) - Windows 
+
+            -> Install Java Runtime 21 LTS 
+
+                -> MID Server is an Java Agent 
+
+            -> We Need To Download MID Server Software From Service Now PDI 
+
+                -> Install MID Server Software
+
+        
+        -> Service Now PDI 
+
+            -> Create Separate Account (User) For MID Server Software 
+
+                -> NOTE: MID Server needs a dedicated user, Never use admin user 
+
+
+        -> NOTE: Do Research On Following Concepts In Cloud 
+
+            -> What are Virtual Machines 
+
+            -> What are Virtual Networks          
+
+            -> What are Sub Networks 
+
+            -> What are Firewalls 
+
+            -> What are Network Protocols
+
+            -> What is SSH 
+
+            -> What is SSH Key Pair 
+
+            -> What is Password Less Authentication 
+
+
 
 
 
