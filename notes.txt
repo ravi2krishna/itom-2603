@@ -745,7 +745,17 @@ Class - 10
 
 
 
+Class - 11
+-----------
 
+    -> LABS 
+
+    -> Create dedicated user for mid server software and make sure to login 
+    and verify Authentication 
+
+    -> Apply Following Role For  dedicated user created 
+
+        -> mid_server 
 
 
 
