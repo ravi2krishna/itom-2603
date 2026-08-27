@@ -758,6 +758,23 @@ Class - 11
         -> mid_server 
 
 
+Class - 12
+-----------
+
+    -> LABS Continuation 
+
+    -> NOTE: Out Of Box, ServiceNow Doesn't Ship With ITOM Features.
+
+    -> NOTE: To Get ITOM Discovery Feature, Install Discovery Plugin 
+
+    -> NOTE: Discovery Plugin Installation Takes Around 30-45 Mins 
+
+    -> NOTE: Once Discovery Plugin Is Installed, Wait for 1 Hour and begin the Lab
+    (Logout & Re login)
+
+
+
+    
 
 
 
