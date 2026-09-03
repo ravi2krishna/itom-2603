@@ -773,8 +773,25 @@ Class - 12
     (Logout & Re login)
 
 
-
+Class - 13
+-----------
     
+    -> Mid Server Installed 
+
+    -> Credentials Updated 
+
+    -> Probes & Sensors Tested 
+
+    -> Now We Should Start With Discovery 
+    
+     
+Class - 13
+-----------
+
+    -> LAB Continued - Discovery On Infrastructure 
+
+
+
 
 
 
