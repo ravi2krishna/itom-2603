@@ -790,6 +790,30 @@ Class - 13
 
     -> LAB Continued - Discovery On Infrastructure 
 
+     
+Class - 14
+-----------
+
+    -> Discovery On Linux/Unix Systems
+
+        -> Single Server 
+
+        -> Cluster Of Servers (Subnets)
+
+    -> To Connect With Linux Systems (Ubuntu Operating System) We Need SSH Key Pairs 
+
+        -> SSH Key Pair 
+
+            -> Public Key - Stored On AWS Side 
+
+            -> Private Key - Stored On User Side 
+
+            -> Username - ubuntu 
+
+        -> NOTE: To Verify SSH Login, Use SSH Clients 
+
+            -> Terminal / Putty / Powershell / GitBash etc 
+
 
 
 
