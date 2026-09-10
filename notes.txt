@@ -938,6 +938,38 @@ Class - 15
         -> NOTE: When We Give Incorrect Range Discovery Fails 
 
         
+Class - 16
+-----------
+
+    -> Creation Of Subnet For Cluster Discovery
+
+        -> 172.31.48.0/28 (Discovery Range)
+
+    -> Range For - 172.31.48.0/2
+
+        -> NOTE: AWS automatically reserves 5 IP addresses in every subnet CIDR block
+
+        -> 172.31.48.0 - Exclude (Network address)
+        -> 172.31.48.1 - Exclude (VPC router/gateway)
+        -> 172.31.48.2 - Exclude (DNS server)
+        -> 172.31.48.3 - Exclude (future use)
+        -> 172.31.48.4
+        -> 172.31.48.5
+        -> 172.31.48.6
+        -> 172.31.48.7
+        .
+        .
+        .
+        -> 172.31.48.14
+        -> 172.31.48.15 - Exclude (broadcast address) 
+
+        -> NOTE: Range For TCS Sales Servers 
+
+            -> Starting IP - 172.31.48.4
+
+            -> Ending IP - 172.31.48.14
+    
+
 
 
 
