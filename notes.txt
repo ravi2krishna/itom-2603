@@ -970,8 +970,73 @@ Class - 16
             -> Ending IP - 172.31.48.14
     
 
+Class - 17
+-----------
 
+    -> NOTE: Till Now Our Focus Was Only On Infrastructure.
+    
+    -> IT Operations Management is suite of applications within service now 
+    this applications helps organizations discover, map, monitor and manage 
+    their companies IT Infrastructure and IT Services.
 
+    -> To Manage IT Services(Applications) We Need Service Mapping. 
+
+    -> https://www.servicenow.com/in/products/it-operations-management/what-is-service-mapping.html
+
+    -> Service Mapping 
+
+        -> Service mapping is used to discover and track IT applications and 
+        components in an organization, outlining how each connects to business services.
+
+        -> Service mapping charts a company’s interconnected IT environment. 
+        This allows organizations to build a service-aware view of 
+        how their underlying IT applications and related components 
+        connect to business services.
+
+        -> https://media.licdn.com/dms/image/v2/D5612AQFTabVd6lwPNw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1675397958842?e=2147483647&v=beta&t=yN3OPRI6JCxvBOLTsW72W3ZQpjN1uDWIztrEgpI-FrU
+
+        -> NOTE: Service mapping is a way of more clearly understanding application services.
+
+    -> Application Service 
+
+        -> An application service is defined as a group of connected applications 
+        and hosts configured to operate together, to provide a specific service 
+        to an organization or end-user.
+
+        -> One example of an application service is financial reporting. 
+        When an organization needs to generate a financial report, 
+        they employ an application service that includes computer hardware, 
+        web server, application server, databases, middleware, and 
+        network infrastructure components. 
+        Each of these works together to provide the service of 
+        creating the desired financial report.
+
+        -> Traditionally, IT departments have relied on horizontal discovery to map 
+        IT infrastructures. This delivery method creates inventories that act as 
+        though every application and device is standalone, without making note of 
+        the connections between devices and application services. 
+        
+        -> Service mapping forgoes this outdated approach, relying instead on 
+        top-down mapping that focuses on the connections between devices and applications 
+        so that any issues or changes can be immediately identified along with their impact 
+        on the rest of the application service.
+
+    -> How Service Mapping Works 
+
+        -> Correctly implemented, service mapping creates a detailed, complete view of objects 
+        within the IT infrastructure, with a focus on the semantic connections between them. 
+        To do this, service mapping deploys different methods for identifying 
+        application services. One widely-used approach is through locating patterns. 
+        
+        -> In service mapping, patterns are sequences of operations used to 
+        detect attributes of devices and applications along with their outbound connections. 
+        Asset management tags, for example, can help clearly identify relationships 
+        between applications and are valuable in mapping application services.
+
+        -> Additionally, service mapping may also be able to trace traffic 
+        as it moves between applications and devices (called traffic-based mapping).
+
+       -> https://www.servicenow.com/docs/r/zurich/it-operations-management/service-mapping/service-mapping-get-started.html 
 
 
 
