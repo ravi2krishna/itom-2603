@@ -1039,9 +1039,98 @@ Class - 17
        -> https://www.servicenow.com/docs/r/zurich/it-operations-management/service-mapping/service-mapping-get-started.html 
 
 
+Class - 18
+-----------
+
+    -> NOTE: Service Discovery See "What Exists"
+
+    -> NOTE: Service Mapping Sees "How CI's Talk To Each Other"
+
+    -> Before Starting With Service Mapping 
+
+        -> Make Sure MID Server Is Setup and Running 
+
+        -> Discovery Plugin Installed 
+
+        -> Service Mapping Plugin Installed
+
+    
+    -> Service Discovery To Service Mapping 
+
+        -> 1st - Horizontal Discovery 
+
+            -> Linux Server 
+
+                -> Loading Linux Server Into CMDB 
+
+        
+        -> 2nd - Vertical Discovery / Top Down Discovery
+
+            -> On The Linux Server Will Setup - Web Server 
+
+            -> Once Installed Web Server (Apache Web Server)
+
+            -> Using Patterns, Vertical Discovery Will Detect   
+            Apache Web Server 
+
+            -> NOTE: Patterns are preferred method for discovering Applications & Services 
+
+            -> A Pattern is a declarative definition unlike imperative definition of probes, 
+            used to discover specific type of softwares and services, it defines 
+            what to look for, which pattern to run and what files to read and how to 
+            map the results to CI Attributes. 
+
+            -> Patterns are available in Visual Designer(Pattern Designer), rather than
+            working with javascript. 
+
+            -> Patter has Identification Section, which defines how to process 
+            applications or services. 
+
+        
+        -> Web Server 
+
+            ->  WEB SERVER - A web server is computer software [ APACHE HTTP Server ] 
+            and underlying hardware  [ AWS EC2 / AZURE VM ] that accepts requests via HTTP/S 
+            to distribute web content(Ecommerce Content).
+
+            -> https://media.geeksforgeeks.org/wp-content/uploads/20190927155217/webserver.png
+
+            -> Proceed With Apache Web Server Installation
+
+                -> commands to setup Apache Web Server
+
+        
+        -> Setup Ecommerce Business Service / Site 
+
+            -> Ecommerce Business Service Code 
+
+                -> https://github.com/ravi2krishna/ecomm.git
+
+            
+            -> Once Application Code Is Hosted 
+
+                -> We Need To Map The Domain Name To Ecommerce Service 
+
+                -> Update The DNS in Apache Configuration Files 
+
+                    -> /etc/apache2/sites-available/
+
+                        -> ServerName yourdomain.com
+
+
+        
+        -> We Create Service Map / Service Instance 
+
+            -> We Need To Add Entry Point 
+
+                -> URL: yourdomain.com
+
+            -> Start Service Mapping / Top Down Discovery 
 
 
 
+
+    -> Setting Up Business Service 
 
 
 
