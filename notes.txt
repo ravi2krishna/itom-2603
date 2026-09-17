@@ -1133,10 +1133,51 @@ Class - 18
     -> Setting Up Business Service 
 
 
+Class - 19
+-----------
+
+    -> Service Mapping Lab 
+
+        -> Install Service Mapping Plugin 
+
+        -> Setup Ecommerce Business Service 
+
+            -> Browse DNS Of Your Server
+
+            -> sudo apt update -y 
+
+            -> sudo ss -ntpl 
+
+            -> sudo apt install apache2 -y 
+
+            -> sudo ss -ntpl
+
+            -> Browse DNS Of Your Server (Apache Installed)
 
 
+            -> Host The Ecommerce Application 
+
+                -> Application Code - https://github.com/ravi2krishna/ecomm.git
+
+                -> Document Directory - /var/www/html/
+
+                -> sudo git clone <url> <destination 
+
+                -> sudo git clone https://github.com/ravi2krishna/ecomm.git /var/www/html/
+
+                -> Clean Up 
+
+                    -> sudo rm -r /var/www/html/*
+
+                -> sudo git clone https://github.com/ravi2krishna/ecomm.git /var/www/html/
 
 
+        -> For Next Session Look Into Following Tools 
 
+            -> Prometheus (Any Tool)
 
+            -> Alert Manager (Any Tool)
 
+            -> Service Now Prometheus Integration 
+
+            -> To Get Monitoring Work, We Need To Install Event Management
