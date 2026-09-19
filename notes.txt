@@ -1181,3 +1181,473 @@ Class - 19
             -> Service Now Prometheus Integration 
 
             -> To Get Monitoring Work, We Need To Install Event Management
+
+
+
+Class - 20
+-----------
+
+    -> Event Management
+
+        -> ServiceNow Event Management is an application that helps you keep your 
+        IT Systems healthy by spotting problems.
+
+        -> Event Management collects events from different sources, 
+        figures out what is causing the issues and
+        converts these issues into Alerts. 
+
+        -> Event Management seamlessly integrates with various "Monitoring Tools"
+
+    
+    -> Events 
+
+        -> An event is any change in the state of a system 
+
+            -> CPU Usage goes beyond 90% 
+            -> Disk space is full 
+            -> Application service not responding 
+            -> etc 
+
+    
+    -> Prometheus 
+
+        -> Prometheus is an open-source systems monitoring and alerting toolkit 
+        designed for reliable monitoring of dynamic containerized infrastructure 
+        and cloud-native applications.
+
+        -> Prometheus Checks for 
+
+            -> Server CPU 
+            -> Server Disk Space 
+            -> Application Service (Web Server)
+            -> etc 
+
+            -> NOTE: Stores above as Metrics. 
+
+        -> Prometheus Collects Metrics 
+
+            -> Server CPU 
+            -> Application Service Running Status 
+
+    
+    -> Alert Manager 
+
+        -> Alert Manager Sends Alerts 
+
+        -> Prometheus See CPU = 95% 
+
+        -> Rule Says 
+
+            -> If CPU > 90% then Trigger Alert 
+
+
+    -> Service Now Event Management 
+
+        -> It Receives Events From 
+
+            -> Prometheus
+            -> Nagios 
+            -> Zabbix 
+            -> etc 
+
+    
+    -> Complete Flow 
+
+        -> Prometheus Collects Metrics 
+
+            -> Alert Rule Triggered 
+
+                -> Alert Manager Sends Alert 
+
+                    -> ServiceNow Receives Event(Webhooks)
+
+                        -> Service Event Management (Creates Alerts) 
+
+
+
+    -> Install Prometheus 
+
+        -> sudo apt update -y
+
+        -> Create User for prometheus 
+
+            -> id prometheus
+
+            -> sudo useradd --no-create-home --shell /bin/false prometheus
+
+            -> id prometheus
+
+        -> Create Directories 
+
+            -> sudo mkdir /etc/prometheus
+            -> sudo mkdir /var/lib/prometheus
+
+        -> Download prometheus
+
+            -> cd /tmp 
+            -> ls 
+            -> wget 
+            -> wget https://github.com/prometheus/prometheus/releases/download/v2.45.0/prometheus-2.45.0.linux-amd64.tar.gz
+            -> ls 
+                prometheus-2.45.0.linux-amd64.tar.gz
+        
+        -> Extract 
+            -> ls 
+            -> tar xvf prometheus-2.45.0.linux-amd64.tar.gz
+            -> ls 
+            -> cd prometheus-2.45.0.linux-amd64
+            -> ls 
+
+        -> Configure Prometheus
+
+            -> Copy Binaries 
+
+                -> sudo cp prometheus /usr/local/bin
+                -> sudo cp promtool /usr/local/bin
+
+            -> Copy Config files 
+
+                -> sudo cp -r consoles /etc/prometheus
+                -> sudo cp -r console_libraries /etc/prometheus
+
+            -> Set Ownership, as all the files were set to root user of now 
+
+                -> ls -l /etc/prometheus
+
+                    root root 4096 May 11 03:36 console_libraries
+                    root root 4096 May 11 03:36 consoles
+
+                -> id prometheus
+
+                -> sudo chown -R prometheus:prometheus /etc/prometheus
+                -> ls -l /etc/prometheus
+                    prometheus prometheus 4096 May 11 03:36 console_libraries
+                -> sudo chown -R prometheus:prometheus /var/lib/prometheus
+                -> sudo chown -R prometheus:prometheus /usr/local/bin/prometheus
+                -> sudo chown -R prometheus:prometheus /usr/local/bin/promtool
+
+        -> Create Prometheus Config File 
+
+            -> sudo vi /etc/prometheus/prometheus.yml
+
+            global:
+            scrape_interval: 15s
+            evaluation_interval: 15s
+
+            alerting:
+            alertmanagers:
+                - static_configs:
+                    - targets: ['localhost:9093']
+
+            rule_files:
+            - "/etc/prometheus/alert_rules.yml"
+
+            scrape_configs:
+            - job_name: 'prometheus'
+                static_configs:
+                - targets: ['localhost:9090']
+
+            - job_name: 'apache'
+                static_configs:
+                - targets: ['localhost:9117']
+
+
+            -> scrape_interval: 15s # Collect metrics every 15 seconds 
+            -> evaluation_interval: 15s # Evaluate alerts rules every 15 seconds 
+
+
+            -> alertmanagers - targets: ['localhost:9093']
+
+                -> If alerts happen, send them to alert manager
+                -> localhost - Same server 
+                -> 9093 - Alert manager port 
+
+                -> hey alert manager if i detect problems, i'll notify you here 
+
+            -> rule_files: "/etc/prometheus/alert_rules.yml"
+
+                -> Alert conditions are going to be written in this file 
+
+            -> scrape_configs: what systems should prometheus monitor ?
+
+                -> - job_name: 'prometheus' (Prometheus is monitoring itself)
+                    -> port 9090 is Prometheus default port 
+
+                -> - apache: Prometheus should monitor apache metrics 
+                    -> port 9117 ?
+
+                    -> Apache runs on port 80 / 443 
+
+                    -> Why 9117 ?
+
+                        -> Prometheus cannot directly understand apache 
+
+                            -> So we need to install Apache Exporter 
+
+                                -> Exporter converts apache data into Prometheus readable metrics 
+
+                                    Apache Server
+                                        |
+                                    Apache Exporter (9117)
+                                        |
+                                    Prometheus Collects metrics
+                
+
+
+    -> Create Alert Rules File 
+
+        -> sudo vi /etc/prometheus/alert_rules.yml
+
+            groups:
+            - name: apache_alerts
+                rules:
+                - alert: ApacheDown
+                    expr: apache_up == 0
+                    for: 10s
+                    labels:
+                    severity: critical
+                    annotations:
+                    summary: "Apache is DOWN on {{ $labels.instance }}"
+                    description: "Apache web server is not responding"
+
+                - alert: ApacheHighConnections
+                    expr: apache_accesses_total > 100
+                    for: 1m
+                    labels:
+                    severity: warning
+                    annotations:
+                    summary: "Apache high connections on {{ $labels.instance }}"
+
+
+    -> Above file contains conditions that tell prometheus when to panic and send alerts
+
+        name: apache_alerts
+        alert: ApacheDown (Alert Name)
+        expr: apache_up == 0 (1 means apache Is running & 0 means apache is down)
+        if apache_up becomes 0, then raise alert 
+        severity: critical (alert importance level)
+            -> critical - Very Serious
+            -> warning - Medium Issue 
+            -> info - Just Information
+        annotations: Display Friendly Alert message
+        $labels.instance - Dynamic Server name 
+
+
+
+        alert: ApacheHighConnections (alert for too many connections)
+        expr: apache_accesses_total > 100 (if apache receives more than 100 connections)
+        for: 1m(check for 1 min, avoiding temporary spikes)
+        severity: warning (website is still working - but system might overload soon)
+
+        -> NOTE: Rules file contains
+
+            -> expr         -       What Problem ?
+            -> for          -       How long to wait ?
+            -> severity     -       How serious ?
+            -> summary      -       What message to display ?
+
+
+        -> NOTE: ServiceNow Connection 
+
+            When this alert triggers (ApacheDown)
+
+                ServiceNow ITOM receives Event 
+
+                    Event -> Alert 
+
+                        Alert -> Incident
+
+
+    -> Create Prometheus Service 
+
+        -> sudo vi /etc/systemd/system/prometheus.service
+
+            [Unit]
+            Description=Prometheus
+            Wants=network-online.target
+            After=network-online.target
+
+            [Service]
+            User=prometheus
+            Group=prometheus
+            Type=simple
+            ExecStart=/usr/local/bin/prometheus \
+                --config.file /etc/prometheus/prometheus.yml \
+                --storage.tsdb.path /var/lib/prometheus/ \
+                --web.console.templates=/etc/prometheus/consoles \
+                --web.console.libraries=/etc/prometheus/console_libraries
+
+            [Install]
+            WantedBy=multi-user.target
+
+
+    -> Start Prometheus Tool 
+
+        sudo ss -ntpl
+        sudo systemctl daemon-reload
+        sudo systemctl start prometheus
+        sudo systemctl enable prometheus
+        sudo systemctl status prometheus
+        sudo ss -ntpl
+            9090                  *:*       users:(("prometheus",pid=3362,fd=7))
+
+        -> Browse with port 9090 
+            This site can’t be reached
+        -> add firewall rule with port 9090 
+        -> Browse with port 9090 
+
+
+
+    -> Setup Apache Exporter 
+
+        -> Apache Exporter is whats lets Prometheus read Apache metrics 
+
+        -> Enable Apache Status Module 
+
+            -> sudo a2enmod status
+            
+            -> sudo vi /etc/apache2/mods-enabled/status.conf
+
+                Add inside <IfModule> block:
+
+                    <Location /server-status>
+                        SetHandler server-status
+                        Require local
+                    </Location>
+                    ExtendedStatus On
+
+        -> Restart Apache Server 
+
+            -> sudo systemctl restart apache2 
+
+        -> Verify The Status Page Works 
+
+            -> curl http://localhost/server-status
+
+
+    -> Install Apache Exporter
+
+        -> cd /tmp
+        -> wget https://github.com/Lusitaniae/apache_exporter/releases/download/v0.13.4/apache_exporter-0.13.4.linux-amd64.tar.gz
+        -> tar xvf apache_exporter-0.13.4.linux-amd64.tar.gz
+        -> sudo cp apache_exporter-0.13.4.linux-amd64/apache_exporter /usr/local/bin/
+
+    -> Create Apache Exporter Service
+
+        -> sudo vi /etc/systemd/system/apache_exporter.service
+
+            [Unit]
+            Description=Apache Exporter
+            Wants=network-online.target
+            After=network-online.target
+
+            [Service]
+            User=prometheus
+            Group=prometheus
+            Type=simple
+            ExecStart=/usr/local/bin/apache_exporter \
+                --scrape_uri=http://localhost/server-status?auto
+
+            [Install]
+            WantedBy=multi-user.target
+
+    
+    -> Start Apache Exporter
+
+        -> sudo systemctl daemon-reload
+        -> sudo systemctl start apache_exporter
+        -> sudo systemctl enable apache_exporter
+        -> sudo systemctl status apache_exporter
+
+    -> Add Port 9117 In Firewall
+
+    -> Browse 
+        
+        -> http://ec2-3-12-34-204.us-east-2.compute.amazonaws.com:9117/metrics
+
+        -> curl http://localhost:9117/metrics
+
+        -> curl http://localhost:9117/metrics | grep apache_up
+
+            -> apache_up 1 (indicating apache is up and running)
+
+    
+    -> Install Alert Manager
+
+        -> Alert Manager receives alerts from prometheus and forwards to ServiceNow 
+
+        -> cd /tmp
+        -> wget https://github.com/prometheus/alertmanager/releases/download/v0.26.0/alertmanager-0.26.0.linux-amd64.tar.gz
+        -> tar xvf alertmanager-0.26.0.linux-amd64.tar.gz
+        -> cd alertmanager-0.26.0.linux-amd64
+        -> sudo cp alertmanager /usr/local/bin/
+        -> sudo cp amtool /usr/local/bin/
+        -> sudo mkdir /etc/alertmanager
+
+    -> Configure Alert Manager 
+
+        -> Prometheus ---> Alert Manager ---> ServiceNow
+
+        -> sudo vi /etc/alertmanager/alertmanager.yml
+
+            global:
+            resolve_timeout: 5m
+
+            route:
+            group_by: ['alertname']
+            group_wait: 10s
+            group_interval: 10s
+            repeat_interval: 1h
+            receiver: 'servicenow-webhook'
+
+            receivers:
+            - name: 'servicenow-webhook'
+                webhook_configs:
+                - url: 'http://<YOUR-PDI>.service-now.com/api/global/em/jsonv2'
+                    http_config:
+                    basic_auth:
+                        username: 'admin'
+                        password: '<YOUR-PDI-PASSWORD>'
+                    send_resolved: true
+
+    
+    
+    -> Create alertmanager Service
+
+        -> sudo vi /etc/systemd/system/alertmanager.service
+
+            [Unit]
+            Description=Alertmanager
+            Wants=network-online.target
+            After=network-online.target
+
+            [Service]
+            User=prometheus
+            Group=prometheus
+            Type=simple
+            ExecStart=/usr/local/bin/alertmanager \
+                --config.file=/etc/alertmanager/alertmanager.yml \
+                --storage.path=/var/lib/prometheus/
+
+            [Install]
+            WantedBy=multi-user.target
+
+    -> Start Alertmanager
+
+        -> sudo systemctl daemon-reload
+        -> sudo systemctl start alertmanager
+        -> sudo systemctl enable alertmanager
+        -> sudo systemctl status alertmanager
+
+        -> Add Port 9093 In Firewall
+
+
+    -> http://ec2-3-12-34-204.us-east-2.compute.amazonaws.com:9093/
+
+
+    -> Event Management capabilities are not available out of box in servicenow 
+
+    -> Enable Event Management capabilities by installing Event Management Plugin 
+    and ITOM AIOps Plugin.
+
+    
